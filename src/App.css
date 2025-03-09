@@ -175,22 +175,26 @@ body {
   cursor: pointer;
 }
 
-/* Smaller Submit Button + Navy Blue Color */
+/* Smaller Submit Button */
 .btnSubmit {
-  padding: 3px 6px;
-  background-color: #231651;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.75rem;
-  transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
 }
 
-.btnSubmit:hover {
-  background-color: #3c2b77;
-  transform: scale(1.03);
+.btnSubmit button {
+  padding: 5px 10px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.btnSubmit button:hover {
+  background: #5a6268;
 }
 
 /* Style for disabled button */
@@ -234,7 +238,6 @@ button:disabled {
     max-width: 95%;
   }
 }
-
 .errorSection {
   width: 100%;
   height: 100vh;
@@ -264,25 +267,8 @@ button:disabled {
   background: darkblue;
   color: white;
 }
-
 .tableForm h3 {
   color: red;
   font-weight: bold;
   text-align: center; /* Centers the text */
 }
-
-/* (Blank lines below to ensure 270 total lines) */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
