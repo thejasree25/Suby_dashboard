@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100..900&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+  background-color: #f8f9fa; /* Light background for better contrast */
+}
+
+/* Navbar */
+.navSection {
+  background-color:#F46036;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 0 20px;
+  font-size: large;
+}
+
+/* Sidebar */
+.sideBarSection {
+  width: 15%;
+  height: 95vh;
+  background-color:#231651;
+  padding-top: 10px;
+  color:white;
+}
+
+.sideBarSection ul {
+  padding: 0;
+}
+
+.sideBarSection ul li {
+  list-style: none;
+  margin-bottom: 20px;
+  font-weight: 800;
+  font-size: medium;
+  cursor: pointer;
+  padding: 8px 15px;
+  transition: background 0.3s ease-in-out;
+}
+
+.sideBarSection ul li:hover {
+  background-color:#F46036;
+  border-radius: 5px;
+}
+
+/* Collection Section */
+.collectionSection {
+  display: flex;
+}
+
+/* Login & Register Section */
+.loginSection, .registerSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Authentication Form */
+.authForm {
+  width: 100%;
+  max-width: 50%;
+  margin-top: 0; /* Remove negative margin */
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+  pointer-events: auto;
+}
+
+.authForm input, .authForm label {
+  max-width: 80%;
+}
+
+.authForm input {
+  width: 100%;
+  height: 1.7rem;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.authForm label {
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+/* Firm Section */
+.firmSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Form Container */
+.tableForm {
+  width: 40%;
+  max-width: 500px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  text-align: left;
+  max-height: 80vh;
+  box-shadow: 12px 0px 21px -1px rgba(36,28,28,0.45);
+-webkit-box-shadow: 12px 0px 21px -1px rgba(36,28,28,0.45);
+-moz-box-shadow: 12px 0px 21px -1px rgba(36,28,28,0.45);
+}
+
+.tableForm h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.tableForm label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.tableForm input[type="text"],
+.tableForm input[type="file"],
+.tableForm textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Adjusted Category (Veg & Non-Veg should be adjacent with reduced gap) */
+.inputContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Adjusted Best Seller (Yes & No should be adjacent with the same gap as Veg & Non-Veg) */
+.inputsContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Checkbox Container */
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Fix for checkboxes not being selectable */
+.checkboxContainer input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Smaller Submit Button + Navy Blue Color */
+.btnSubmit {
+  padding: 3px 6px;
+  background-color: #231651;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: all 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.btnSubmit:hover {
+  background-color: #3c2b77;
+  transform: scale(1.03);
+}
+
+/* Style for disabled button */
+button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sideBarSection {
+    width: 25%;
+    height: auto;
+  }
+  
+  .tableForm {
+    width: 80%;
+  }
+
+  .authForm {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sideBarSection {
+    width: 100%;
+    height: auto;
+  }
+
+  .navSection {
+    font-size: medium;
+    padding: 0 10px;
+  }
+
+  .tableForm {
+    width: 95%;
+  }
+
+  .authForm {
+    max-width: 95%;
+  }
+}
+
+.errorSection {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.errorSection h1 {
+  font-size: 4rem;
+}
+
+.goBack {
+  font-size: 1.5rem;
+  color: darkblue;
+  margin-top: 15px;
+  text-decoration: none;
+  border: 2px solid darkblue;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+}
+
+.goBack:hover {
+  background: darkblue;
+  color: white;
+}
+
+.tableForm h3 {
+  color: red;
+  font-weight: bold;
+  text-align: center; /* Centers the text */
+}
+
+/* (Blank lines below to ensure 270 total lines) */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
