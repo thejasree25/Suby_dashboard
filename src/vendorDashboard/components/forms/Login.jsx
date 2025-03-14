@@ -1,55 +1,78 @@
-import React, { useState } from 'react';
-import { API_URL } from '../../data/apiPath';
+import React, { useState } from "react";
+import { API_URL } from "../../data/apiPath";
 
 const Login = ({ showWelcomeHandler }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false); // ✅ Fix: Added loading state
+    const [loading, setLoading] = useState(false);
 
     const loginHandler = async (e) => {
         e.preventDefault();
         setLoading(true);
-
+    
         try {
             const response = await fetch(`${API_URL}/vendor/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
             });
-
+    
             const data = await response.json();
             console.log("API Response:", data);
-
-            if (response.ok) {
-                alert('Login Success');
-                setEmail("");    
-                setPassword(""); 
-                localStorage.setItem('loginToken', data.token);
-                showWelcomeHandler();  // ✅ Show the Welcome component after login
+    
+            if (!response.ok) {
+                throw new Error(data.error || "Login failed");
             }
-            const vendorId = data.vendorId;
-            console.log("checking for VendorID",vendorId)
-            const vendorResponse = await fetch(`${API_URL}/vendor/single-vendor/${vendorId}`);
-            const vendorData=await vendorResponse.json();
-           console.log(vendorData);
-            if(vendorResponse.ok ){
-                const vendorFirmId=vendorData.vendorFirmId;
-                const vendorFirmName=vendorData.vendor.firm[0].firmName;
-                console.log("my firmName is",vendorFirmName)
-                console.log("checking for FirmId",vendorFirmId);
-                localStorage.setItem('firmId',vendorFirmId)
-                localStorage.setItem('firmName',vendorFirmName)
-                window.location.reload();
+    
+            alert("Login Success");
+            localStorage.setItem("loginToken", data.token);
+            setEmail("");
+            setPassword("");
+            showWelcomeHandler();
+    
+            if (!data.vendorId) {
+                console.error("Vendor ID is missing in login response");
+                alert("Vendor ID is missing. Please try again.");
+                return;
             }
-            else {
-                console.error("Firm ID is missing in vendor response.");
+    
+            console.log("Checking for VendorID:", data.vendorId);
+            const vendorResponse = await fetch(`${API_URL}/vendor/single-vendor/${data.vendorId}`);
+    
+            if (!vendorResponse.ok) {
+                throw new Error("Failed to fetch vendor details");
             }
+    
+            const vendorData = await vendorResponse.json();
+            console.log("Vendor Data:", vendorData);
+    
+            // ✅ If no firm exists, redirect the vendor to Add Firm page
+            if (!vendorData?.vendor?.firm || vendorData.vendor.firm.length === 0) {
+                console.warn("Vendor firm data is missing");
+                alert("You haven't added a firm yet. Redirecting to Add Firm page...");
+                localStorage.setItem("firmId", ""); // Clear previous firm data
+                localStorage.setItem("firmName", "");
+                window.location.href = "/add-firm"; // Redirect to Add Firm page
+                return;
+            }
+    
+            const vendorFirmId = vendorData.vendor.firm[0]._id;
+            const vendorFirmName = vendorData.vendor.firm[0].firmName;
+            console.log("My firmName is", vendorFirmName);
+            console.log("Checking for FirmId", vendorFirmId);
+    
+            localStorage.setItem("firmId", vendorFirmId);
+            localStorage.setItem("firmName", vendorFirmName);
+            window.location.reload();
+    
         } catch (error) {
-          alert("login fail")
-        } 
+            console.error("Login Error:", error.message);
+            alert(error.message);
+        } finally {
+            setLoading(false);
+        }
     };
+    
 
     return (
         <div className="loginSection">
@@ -57,24 +80,24 @@ const Login = ({ showWelcomeHandler }) => {
                 <h3>Vendor Login</h3>
 
                 <label>Email</label>
-                <input 
+                <input
                     type="text"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     name="email"
                     placeholder="Enter your email"
                     autoComplete="off"
-                /><br/>
+                /><br />
 
                 <label>Password</label>
-                <input 
+                <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     name="password"
                     placeholder="Enter your password"
                     autoComplete="off"
-                /><br/>
+                /><br />
 
                 <div className="btnSubmit">
                     <button type="submit" disabled={loading}>

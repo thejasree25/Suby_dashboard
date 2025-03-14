@@ -1,55 +1,54 @@
 .product-container {
-    display: flex;
-    justify-content: flex-start; /* Align items to the left */
-    align-items: center;
-    flex-direction: column;
-    margin: 20px;
-    padding: 20px;
-    margin-left: 250px; /* Add margin to shift the table right */
-  }
-  
-  .products-container {
-    margin-left: 100px; /* Reduce this value to move the table left */
-    padding: 20px;
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  margin-left: 250px; /* Add margin to shift the table right */
+}
+
+.products-container {
+  margin-left: 100px; /* Reduce this value to move the table left */
+  padding: 20px;
 }
 
 .product-table {
-    width:100%;
-    border-collapse: collapse;
+  width:100%;
+  border-collapse: collapse;
 }
 
-  
-  .product-table th,
-  .product-table td {
-    border: 1px solid gray;
-    padding: 15px;
-    text-align: center;
-    min-width: 200px;
-  }
-  
-  .product-table th {
-    background-color: #4a4a4a;
-    color: white;
-    font-size: 16px;
-  }
-  
-  .product-table td img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  
-  .product-table button {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .product-table button:hover {
-    background-color: #cc0000;
-  }
-  
+
+.product-table th,
+.product-table td {
+  border: 1px solid gray;
+  padding: 15px;
+  text-align: center;
+  min-width: 200px;
+}
+
+.product-table th {
+  background-color: #4a4a4a;
+  color: white;
+  font-size: 16px;
+}
+
+.product-table td img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.product-table button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.product-table button:hover {
+  background-color: #cc0000;
+}

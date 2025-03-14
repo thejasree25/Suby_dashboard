@@ -10,7 +10,7 @@ const Register = ({ showLoginHandler}) => {
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    e.preventDefault(); // Kept exactly as in your code
+
     try{
       const response=await fetch(`${API_URL}/vendor/register`,{
         method:'POST',
